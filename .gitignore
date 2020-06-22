@@ -1,0 +1,15 @@
+.idea/*
+*.class
+
+### IntelliJ IDEA ###
+.idea
+*.war
+*.jar
+*.ear
+
+.mvn/*
+HELP.md
+mvnw
+target/*
+web-shop.iml
+mvnw.cmd
