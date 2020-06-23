@@ -12,6 +12,8 @@ public class StockRoom implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long quantity;
+    @OneToMany
+    private List<Good> goodList;
 
     public StockRoom() { }
     public Long getId() {

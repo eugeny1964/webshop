@@ -1,9 +1,6 @@
 package com.evgueny.webshop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,6 +13,9 @@ public class Client {
     private String address;
     private String phon;
     private String email;
+
+    @OneToMany(mappedBy = "client")
+    List<Orders> ordersList;
 
     List<Good> seach(Good good) { return null; }
     List<Good> addToCart(Good good) { return null; }

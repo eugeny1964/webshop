@@ -1,9 +1,7 @@
 package com.evgueny.webshop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -11,15 +9,30 @@ public class Orders {
     @Id
     @GeneratedValue
     private Long id;
-    private Long id_delivery;
-    private Long id_status;
 
-    private Long id_client;
+    @OneToMany
+    private List<Delivery> deliveryList;
 
-    public Orders(Long id_delivery, Long id_status, Long id_client) {
-        this.id_delivery = id_delivery;
-        this.id_status = id_status;
-        this.id_client = id_client;
+    @OneToMany
+    private List<Status> statusList;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
+
+    @ManyToMany(mappedBy = "ordersList")
+    private List<Good> goodListOrder;
+
+    public Orders(List<Good> goodListOrder) {
+        this.goodListOrder = goodListOrder;
+    }
+
+    public List<Good> getGoodListOrder() {
+        return goodListOrder;
+    }
+
+    public void setGoodListOrder(List<Good> goodListOrder) {
+        this.goodListOrder = goodListOrder;
     }
 
     public Orders() {
@@ -29,10 +42,14 @@ public class Orders {
     public String toString() {
         return "Orders{" +
                 "id=" + id +
-                ", id_delivery=" + id_delivery +
-                ", id_status=" + id_status +
-                ", id_client=" + id_client +
+                ", client=" + client +
                 '}';
+    }
+
+    public Orders(List<Delivery> deliveryList, List<Status> statusList, Client client) {
+        this.deliveryList = deliveryList;
+        this.statusList = statusList;
+        this.client = client;
     }
 
     public Long getId() {
@@ -43,27 +60,27 @@ public class Orders {
         this.id = id;
     }
 
-    public Long getId_delivery() {
-        return id_delivery;
+    public List<Delivery> getDeliveryList() {
+        return deliveryList;
     }
 
-    public void setId_delivery(Long id_delivery) {
-        this.id_delivery = id_delivery;
+    public void setDeliveryList(List<Delivery> deliveryList) {
+        this.deliveryList = deliveryList;
     }
 
-    public Long getId_status() {
-        return id_status;
+    public List<Status> getStatusList() {
+        return statusList;
     }
 
-    public void setId_status(Long id_status) {
-        this.id_status = id_status;
+    public void setStatusList(List<Status> statusList) {
+        this.statusList = statusList;
     }
 
-    public Long getId_client() {
-        return id_client;
+    public Client getClient() {
+        return client;
     }
 
-    public void setId_client(Long id_client) {
-        this.id_client = id_client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

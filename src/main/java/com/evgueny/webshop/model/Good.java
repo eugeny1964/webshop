@@ -2,6 +2,7 @@ package com.evgueny.webshop.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "good")
@@ -12,7 +13,24 @@ public class Good implements Serializable {
     private String name;
     private Double price;
 
+    @ManyToMany
+    @JoinTable(name = "orders_good",
+            joinColumns = @JoinColumn(name = "id_client"),
+            inverseJoinColumns = @JoinColumn(name = "id_orders")
+    )
+    private List<Orders> ordersList;
 
+    public Good(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
 
     public Good(String name, Double price) {
         this.name = name;
