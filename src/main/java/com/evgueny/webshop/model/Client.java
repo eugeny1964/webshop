@@ -9,38 +9,69 @@ public class Client {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String login;
+    private String password;
     private String address;
-    private String phon;
+    private String phone;
     private String email;
 
     @OneToMany(mappedBy = "client")
-    List<Orders> ordersList;
+    List<Order> orderList;
 
-    List<Good> seach(Good good) { return null; }
-    List<Good> addToCart(Good good) { return null; }
-    void buy(List<Good> list) { }
-    void quit() { }
-    void pay() { }
-
-    public Client(String name, String address, String phon,String email) {
-        this.name = name;
-        this.address = address;
-        this.phon = phon;
-        this.email=email;
-    }
     public Client() {
+    }
+
+    public Client(String login, String password, String address, String phon, String email) {
+        this.login = login;
+        this.address = address;
+        this.phone = phon;
+        this.email=email;
+        this.password=password;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id_client=" + id +
-                ", name='" + name + '\'' +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
-                ", phon='" + phon + '\'' +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", orderList=" + orderList +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     public Long getId_client() {
@@ -51,12 +82,12 @@ public class Client {
         this.id = id_client;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String name) {
+        this.login = name;
     }
 
     public String getAddress() {
@@ -68,11 +99,11 @@ public class Client {
     }
 
     public String getPhon() {
-        return phon;
+        return phone;
     }
 
     public void setPhon(String phon) {
-        this.phon = phon;
+        this.phone = phon;
     }
 
     public String getEmail() {

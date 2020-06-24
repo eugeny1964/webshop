@@ -9,13 +9,26 @@ import java.util.List;
 @Table(name = "stockroom")
 public class StockRoom implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
-    private Long quantity;
-    @OneToMany
-    private List<Good> goodList;
+    private String number;
 
-    public StockRoom() { }
+    @OneToMany(mappedBy = "stockRoom")
+    private List<Stock_Good> stock_goods;
+
+
+    public StockRoom() {
+    }
+
+    public StockRoom(String number) {
+        this.number = number;
+    }
+
+    public StockRoom(String number, List<Stock_Good> stock_goods) {
+        this.number = number;
+        this.stock_goods = stock_goods;
+    }
+
     public Long getId() {
         return id;
     }
@@ -24,20 +37,19 @@ public class StockRoom implements Serializable {
         this.id = id;
     }
 
-    public Long getQuantity() {
-        return quantity;
+    public String getNumber() {
+        return number;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
+    public List<Stock_Good> getStock_goods() {
+        return stock_goods;
+    }
 
-    @Override
-    public String toString() {
-        return "StockRoom{" +
-                "id=" + id +
-                ", quantity=" + quantity +
-                '}';
+    public void setStock_goods(List<Stock_Good> stock_goods) {
+        this.stock_goods = stock_goods;
     }
 }

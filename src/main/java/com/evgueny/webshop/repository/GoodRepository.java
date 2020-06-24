@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 public interface GoodRepository extends CrudRepository<Good,Long> {
-    Good getAllByName(String name);
+    Good getAllById(Long id);
 }

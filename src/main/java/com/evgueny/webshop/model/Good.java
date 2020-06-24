@@ -13,23 +13,13 @@ public class Good implements Serializable {
     private String name;
     private Double price;
 
-    @ManyToMany
-    @JoinTable(name = "orders_good",
-            joinColumns = @JoinColumn(name = "id_client"),
-            inverseJoinColumns = @JoinColumn(name = "id_orders")
-    )
-    private List<Orders> ordersList;
+    @OneToMany(mappedBy = "good")
+    private List<Order_Good> order_good;
 
-    public Good(List<Orders> ordersList) {
-        this.ordersList = ordersList;
-    }
+    @OneToMany(mappedBy = "good")
+    private List<Stock_Good> stock_goods;
 
-    public List<Orders> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
+    public Good() {
     }
 
     public Good(String name, Double price) {
@@ -37,7 +27,10 @@ public class Good implements Serializable {
         this.price = price;
     }
 
-    public Good() {
+    public Good(String name, Double price, List<Stock_Good> stock_goods) {
+        this.name = name;
+        this.price = price;
+        this.stock_goods=stock_goods;
     }
 
     @Override
@@ -47,6 +40,22 @@ public class Good implements Serializable {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    public List<Order_Good> getOrder_good() {
+        return order_good;
+    }
+
+    public void setOrder_good(List<Order_Good> order_good) {
+        this.order_good = order_good;
+    }
+
+    public List<Stock_Good> getStock_goods() {
+        return stock_goods;
+    }
+
+    public void setStock_goods(List<Stock_Good> stock_goods) {
+        this.stock_goods = stock_goods;
     }
 
     public Long getId() {

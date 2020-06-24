@@ -10,11 +10,11 @@ public class Status {
     private Long id;
     private String type;
 
-    public Status(String type) {
-        this.type = type;
+    public Status() {
     }
 
-    public Status() {
+    public Status(String type) {
+        this.type = type;
     }
 
     @Override
