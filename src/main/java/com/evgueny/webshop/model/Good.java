@@ -36,12 +36,11 @@ public class Good implements Serializable {
     @Override
     public String toString() {
         return "Good{" +
-                "id_good=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }
-
     public List<Order_Good> getOrder_good() {
         return order_good;
     }

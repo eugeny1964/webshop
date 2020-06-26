@@ -1,10 +1,11 @@
 package com.evgueny.webshop.model;
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "stock_good")
-public class Stock_Good {
+public class Stock_Good implements Serializable {
     @Id
     @GeneratedValue
     private Long id;

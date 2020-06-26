@@ -29,6 +29,14 @@ public class StockRoom implements Serializable {
         this.stock_goods = stock_goods;
     }
 
+    @Override
+    public String toString() {
+        return "StockRoom{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

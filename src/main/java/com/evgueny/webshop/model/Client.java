@@ -1,11 +1,12 @@
 package com.evgueny.webshop.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -38,7 +39,6 @@ public class Client {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", orderList=" + orderList +
                 '}';
     }
 

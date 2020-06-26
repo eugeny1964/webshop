@@ -1,22 +1,23 @@
 package com.evgueny.webshop.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "order")
-public class Order {
+public class Order implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "id_delivery")
+    @JoinColumn(name = "delivery_id")
     private Delivery delivery;
     @ManyToOne
-    @JoinColumn(name = "id_status")
+    @JoinColumn(name = "status_id")
     private Status status;
     @ManyToOne
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "order")
     private List<Order_Good> order_good;
@@ -38,7 +39,6 @@ public class Order {
                 ", delivery=" + delivery +
                 ", status=" + status +
                 ", client=" + client +
-                ", order_good=" + order_good +
                 '}';
     }
 
