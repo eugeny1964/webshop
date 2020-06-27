@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
-public class Order implements Serializable {
+@Table(name = "orders")
+public class Orders implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,17 +19,18 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    @OneToMany(mappedBy = "order")
-    private List<Order_Good> order_good;
 
-    public Order() {
+    @OneToMany(mappedBy = "order")
+    private List<Order_Good> order_goods;
+
+    public Orders() {
     }
 
-    public Order(Delivery delivery, Status status, Client client, List<Order_Good> order_good) {
+    public Orders(Delivery delivery, Status status, Client client, List<Order_Good> order_goods) {
         this.delivery = delivery;
         this.status = status;
         this.client = client;
-        this.order_good = order_good;
+        this.order_goods = order_goods;
     }
 
     @Override
@@ -74,11 +75,12 @@ public class Order implements Serializable {
         this.client = client;
     }
 
-    public List<Order_Good> getOrder_good() {
-        return order_good;
+    public List<Order_Good> getOrder_goods() {
+        return order_goods;
     }
 
-    public void setOrder_good(List<Order_Good> order_good) {
-        this.order_good = order_good;
+    public void setOrder_goods(List<Order_Good> order_good) {
+        this.order_goods = order_good;
     }
 }
+

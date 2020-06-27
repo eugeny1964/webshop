@@ -10,15 +10,17 @@ public class Order_Good implements Serializable {
     @GeneratedValue
     private Long id;
     @ManyToOne
-    private Order order;
+    private Orders order;
+
     @ManyToOne
     private Good good;
+
     private int count;
 
     public Order_Good() { }
 
-    public Order_Good(Order order, Good good, int count) {
-        this.order = order;
+    public Order_Good(Orders orders, Good good, int count) {
+        this.order = orders;
         this.good = good;
         this.count = count;
     }
@@ -41,12 +43,12 @@ public class Order_Good implements Serializable {
         this.id = id;
     }
 
-    public Order getOrder() {
+    public Orders getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(Orders orders) {
+        this.order = orders;
     }
 
     public Good getGood() {

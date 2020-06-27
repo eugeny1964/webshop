@@ -2,6 +2,7 @@ package com.evgueny.webshop.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "status")
@@ -10,6 +11,9 @@ public class Status implements Serializable {
     @GeneratedValue
     private Long id;
     private String type;
+
+    @OneToMany(mappedBy = "status")
+    List<Orders> ordersList;
 
     public Status() {
     }

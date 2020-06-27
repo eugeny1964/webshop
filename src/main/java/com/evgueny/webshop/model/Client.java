@@ -17,7 +17,7 @@ public class Client implements Serializable {
     private String email;
 
     @OneToMany(mappedBy = "client")
-    List<Order> orderList;
+    List<Orders> ordersList;
 
     public Client() {
     }
@@ -66,12 +66,12 @@ public class Client implements Serializable {
         this.phone = phone;
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Orders> getOrdersList() {
+        return ordersList;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 
     public Long getId_client() {

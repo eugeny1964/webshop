@@ -1,10 +1,8 @@
 package com.evgueny.webshop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "delivery")
@@ -15,9 +13,24 @@ public class Delivery implements Serializable {
     private String type;
     private Double price;
 
-    public Delivery(String type,Double price) {
+    @OneToMany(mappedBy = "delivery")
+    List<Orders> orderlist;
+
+    public Delivery(List<Orders> orderlist) {
+        this.orderlist = orderlist;
+    }
+
+    public Delivery(String type, Double price) {
         this.type=type;
         this.price=price;
+    }
+
+    public List<Orders> getOrderlist() {
+        return orderlist;
+    }
+
+    public void setOrderlist(List<Orders> orderlist) {
+        this.orderlist = orderlist;
     }
 
     public Delivery() {
