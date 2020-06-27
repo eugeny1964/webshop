@@ -26,10 +26,13 @@ public class Orders implements Serializable {
     public Orders() {
     }
 
-    public Orders(Delivery delivery, Status status, Client client, List<Order_Good> order_goods) {
+    public Orders(Delivery delivery, Status status, Client client) {
         this.delivery = delivery;
         this.status = status;
         this.client = client;
+    }
+
+    public Orders(List<Order_Good> order_goods) {
         this.order_goods = order_goods;
     }
 
