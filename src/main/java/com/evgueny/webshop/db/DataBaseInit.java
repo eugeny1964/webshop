@@ -1,5 +1,6 @@
 package com.evgueny.webshop.db;
 
+import com.evgueny.webshop.db.key.Stock_Good_Key;
 import com.evgueny.webshop.model.*;
 import com.evgueny.webshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class DataBaseInit {
 
     @PostConstruct
     public void init(){
-        Client client1 = clientRepository.save(new Client("Иван", "password2", "Гиляровского 10", "+72222222", "2mail@mail.ru"));
+/*        Client client1 = clientRepository.save(new Client("Иван", "password2", "Гиляровского 10", "+72222222", "2mail@mail.ru"));
         Client client2 = clientRepository.save(new Client("Владимир", "password3", "Щепкина 4", "+73333333Э", "3mail@mail.ru"));
         Client client3 = clientRepository.save(new Client("Артем", "password4", "Проспект Мира 55", "+74444444", "4mail@mail.ru"));
         Client client4 = clientRepository.save(new Client("Федор", "password5", "Сухаревская 3", "+75555555", "5mail@mail.ru"));
@@ -55,9 +56,9 @@ public class DataBaseInit {
         Good good8 = goodRepository.save(new Good("Xiaomi 3", 25000.0));
         Good good9 = goodRepository.save(new Good("Apple 4", 50000.0));
         Good good10 = goodRepository.save(new Good("Apple 5", 70000.0));
-
-        stock_goodRepository.save(new Stock_Good(stock1, good1, 3));
-        stock_goodRepository.save(new Stock_Good(stock2,good2, 8));
+        Stock_Good_Key stock_good_key=new Stock_Good_Key(stock1,good1);
+        Stock_Good stock_good = stock_goodRepository.save(new Stock_Good(stock_good_key, 3));*/
+      /*  stock_goodRepository.save(new Stock_Good(stock2,good2, 8));
         stock_goodRepository.save(new Stock_Good(stock3,good3, 5));
         stock_goodRepository.save(new Stock_Good(stock1,good5, 1));
         stock_goodRepository.save(new Stock_Good(stock1,good7, 4));
@@ -88,12 +89,18 @@ public class DataBaseInit {
         Orders orders11 = ordersRepository.save(new Orders(del2, st1, client4));
         Orders orders12 = ordersRepository.save(new Orders(del3, st2, client5));
 
-        order_goodRepository.save(new Order_Good(orders1,good1,3));
-        order_goodRepository.save(new Order_Good(orders1,good2,7));
+        Order_Good order_good=new Order_Good();
+        order_good.setGood(good1);
+        order_good.setOrders(orders1);
+        order_good.setCount(3L);
+        order_goodRepository.save(order_good);
+*/
+/*        order_goodRepository.save(new Order_Good(orders1,good1,3L));*/
+  /*      order_goodRepository.save(new Order_Good(orders1,good2,7));
         order_goodRepository.save(new Order_Good(orders1,good3,2));
         order_goodRepository.save(new Order_Good(orders2,good5,1));
         order_goodRepository.save(new Order_Good(orders2,good7,1));
         order_goodRepository.save(new Order_Good(orders2,good9,100));
-        order_goodRepository.save(new Order_Good(orders3,good10,200));
+        order_goodRepository.save(new Order_Good(orders3,good10,200));*/
     }
 }

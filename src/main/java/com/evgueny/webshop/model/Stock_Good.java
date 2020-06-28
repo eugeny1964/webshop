@@ -1,17 +1,19 @@
 package com.evgueny.webshop.model;
+import com.evgueny.webshop.db.key.Stock_Good_Key;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Entity
 @Table(name = "stock_good")
+@IdClass(Stock_Good_Key.class)
 public class Stock_Good implements Serializable {
     @Id
-    @GeneratedValue
-    private Long id;
     @ManyToOne
     @JoinColumn(name = "stock_id" )
     private StockRoom stockRoom;
+    @Id
     @ManyToOne
     @JoinColumn(name = "good_id" )
     private Good good;
@@ -20,30 +22,23 @@ public class Stock_Good implements Serializable {
     public Stock_Good() {
     }
 
-    public Stock_Good(StockRoom stockRoom, Good good, int count) {
-        this.stockRoom = stockRoom;
-        this.good = good;
+    public Stock_Good(Stock_Good_Key stock_good_key, int count) {
+        this.stockRoom = stock_good_key.getStockRoom();
+        this.good = stock_good_key.getGood();
         this.count = count;
     }
-
+    public Stock_Good(StockRoom stockRoom, Good good) {
+        this.stockRoom = stockRoom;
+        this.good = good;
+    }
     @Override
     public String toString() {
         return "Stock_Good{" +
-                "id=" + id +
                 ", stockRoom=" + stockRoom +
                 ", good=" + good +
                 ", count=" + count +
                 '}';
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public StockRoom getStockRoom() {
         return stockRoom;
     }

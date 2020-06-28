@@ -13,7 +13,7 @@ public class Good implements Serializable {
     private String name;
     private Double price;
 
-    @OneToMany(mappedBy = "good")
+    @OneToMany(mappedBy = "goodd")
     private List<Order_Good> order_good;
 
     @OneToMany(mappedBy = "good")

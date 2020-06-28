@@ -20,10 +20,27 @@ public class Orders implements Serializable {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(mappedBy = "order")
-    private List<Order_Good> order_goods;
+    @OneToMany(mappedBy = "orders")
+    private List<Order_Good> order_good;
+    private String number;
 
     public Orders() {
+    }
+
+    public List<Order_Good> getOrder_good() {
+        return order_good;
+    }
+
+    public void setOrder_good(List<Order_Good> order_good) {
+        this.order_good = order_good;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Orders(Delivery delivery, Status status, Client client) {
@@ -33,7 +50,7 @@ public class Orders implements Serializable {
     }
 
     public Orders(List<Order_Good> order_goods) {
-        this.order_goods = order_goods;
+        this.order_good = order_goods;
     }
 
     @Override
@@ -79,11 +96,11 @@ public class Orders implements Serializable {
     }
 
     public List<Order_Good> getOrder_goods() {
-        return order_goods;
+        return order_good;
     }
 
     public void setOrder_goods(List<Order_Good> order_good) {
-        this.order_goods = order_good;
+        this.order_good = order_good;
     }
 }
 

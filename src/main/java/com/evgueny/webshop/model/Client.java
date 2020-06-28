@@ -19,6 +19,10 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client")
     List<Orders> ordersList;
 
+    public Client(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
     public Client() {
     }
 

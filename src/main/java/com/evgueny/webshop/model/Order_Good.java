@@ -1,69 +1,67 @@
 package com.evgueny.webshop.model;
 
+import com.evgueny.webshop.db.key.Order_Good_Key;
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "order_good")
+@IdClass(Order_Good_Key.class)
 public class Order_Good implements Serializable {
     @Id
-    @GeneratedValue
-    private Long id;
     @ManyToOne
-    private Orders order;
-
+    @JoinColumn(name = "orders_id")
+    private Orders orders;
+    @Id
     @ManyToOne
-    private Good good;
+    @JoinColumn(name = "good_id")
+    private Good goodd;
 
-    private int count;
+    private Long count;
 
     public Order_Good() { }
 
-    public Order_Good(Orders orders, Good good, int count) {
-        this.order = orders;
-        this.good = good;
+    public Order_Good(Orders orders, Good good) {
+        this.orders = orders;
+        this.goodd = good;
+    }
+
+    public Order_Good(Orders orders, Good good, Long count) {
+        this.orders = orders;
+        this.goodd = good;
         this.count = count;
     }
 
     @Override
     public String toString() {
         return "Order_Good{" +
-                "id=" + id +
-                ", order=" + order +
-                ", good=" + good +
+                "orders=" + orders +
+                ", good=" + goodd +
                 ", count=" + count +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Orders getOrder() {
-        return order;
-    }
-
-    public void setOrder(Orders orders) {
-        this.order = orders;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
     public Good getGood() {
-        return good;
+        return goodd;
     }
 
     public void setGood(Good good) {
-        this.good = good;
+        this.goodd = good;
     }
 
-    public int getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 }
