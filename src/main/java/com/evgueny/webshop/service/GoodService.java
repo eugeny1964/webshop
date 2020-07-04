@@ -65,7 +65,7 @@ public class GoodService {
         System.out.println(order_good);
         return order_good;
     }
-    //@Transactional
+    @Transactional
     public List<Order_Good> getOrder_goodFromGoodOb(Good good){
         List<Order_Good> order_good = good.getOrder_good();
         System.out.println(order_good);
