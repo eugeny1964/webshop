@@ -2,6 +2,7 @@ package com.evgueny.webshop.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ public class Good implements Serializable {
     private String name;
     private Double price;
 
-    @OneToMany(mappedBy = "goodd")
+    @OneToMany(mappedBy = "good")
     private List<Order_Good> order_good;
 
     @OneToMany(mappedBy = "good")
@@ -25,6 +26,11 @@ public class Good implements Serializable {
     public Good(String name, Double price) {
         this.name = name;
         this.price = price;
+    }
+
+    public Good(List<Order_Good> order_good, List<Stock_Good> stock_goods) {
+        this.order_good = order_good;
+        this.stock_goods = stock_goods;
     }
 
     public Good(String name, Double price, List<Stock_Good> stock_goods) {
@@ -41,6 +47,7 @@ public class Good implements Serializable {
                 ", price=" + price +
                 '}';
     }
+
     public List<Order_Good> getOrder_good() {
         return order_good;
     }
@@ -80,6 +87,7 @@ public class Good implements Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 }
 
 

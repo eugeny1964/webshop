@@ -1,20 +1,17 @@
 package com.evgueny.webshop.db.key;
-
-import com.evgueny.webshop.model.Good;
-import com.evgueny.webshop.model.Orders;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Order_Good_Key implements Serializable {
-    private Orders orders;
-    private Good goodd;
+    private Long orders_id;
+    private Long good_id;
 
     public Order_Good_Key() {
     }
 
-    public Order_Good_Key(Orders orders, Good good) {
-        this.orders = orders;
-        this.goodd = good;
+    public Order_Good_Key(Long orders_id, Long good_id) {
+        this.orders_id = orders_id;
+        this.good_id = good_id;
     }
 
     @Override
@@ -22,28 +19,28 @@ public class Order_Good_Key implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Order_Good_Key)) return false;
         Order_Good_Key that = (Order_Good_Key) o;
-        return Objects.equals(orders, that.orders) &&
-                Objects.equals(goodd, that.goodd);
+        return orders_id.equals(that.orders_id) &&
+                good_id.equals(that.good_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orders, goodd);
+        return Objects.hash(orders_id, good_id);
     }
 
-    public Orders getOrders() {
-        return orders;
+    public Long getOrders_id() {
+        return orders_id;
     }
 
-    public Good getGood() {
-        return goodd;
+    public void setOrders_id(Long orders_id) {
+        this.orders_id = orders_id;
     }
 
-    public void setOrders(Orders orders) {
-        this.orders = orders;
+    public Long getGood_id() {
+        return good_id;
     }
 
-    public void setGood(Good good) {
-        this.goodd = good;
+    public void setGood_id(Long good_id) {
+        this.good_id = good_id;
     }
 }

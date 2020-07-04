@@ -6,5 +6,6 @@ import com.evgueny.webshop.model.Order_Good;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface Order_GoodRepository extends CrudRepository<Order_Good, Order_Good_Key> {
+public interface Order_GoodRepository extends CrudRepository<Order_Good, Long> {
+    Order_Good findByCount(Long counte);
 }

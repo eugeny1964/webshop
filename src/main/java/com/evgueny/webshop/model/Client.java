@@ -1,6 +1,8 @@
 package com.evgueny.webshop.model;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +14,10 @@ public class Client implements Serializable {
     private Long id;
     private String login;
     private String password;
+
+    @NotNull(message = "Поле адреса не может быть пустым")
     private String address;
+
     private String phone;
     private String email;
 
@@ -26,12 +31,12 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String login, String password, String address, String phon, String email) {
+    public Client(String login, String password, @NotNull String address, String phone, String email) {
         this.login = login;
+        this.password = password;
         this.address = address;
-        this.phone = phon;
-        this.email=email;
-        this.password=password;
+        this.phone = phone;
+        this.email = email;
     }
 
     @Override
@@ -70,6 +75,7 @@ public class Client implements Serializable {
         this.phone = phone;
     }
 
+    @Transactional
     public List<Orders> getOrdersList() {
         return ordersList;
     }

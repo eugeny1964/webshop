@@ -13,7 +13,7 @@ public class StockRoom implements Serializable {
     private Long id;
     private String number;
 
-    @OneToMany(mappedBy = "stockRoom")
+    @OneToMany(mappedBy = "stockroom")
     private List<Stock_Good> stock_goods;
 
 
