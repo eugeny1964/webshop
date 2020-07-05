@@ -15,7 +15,7 @@ public class Client implements Serializable {
     private String login;
     private String password;
 
-    @NotNull(message = "Поле адреса не может быть пустым")
+    @NotNull
     private String address;
 
     private String phone;
@@ -31,7 +31,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String login, String password, @NotNull String address, String phone, String email) {
+    public Client(String login, String password, String address, String phone, String email) {
         this.login = login;
         this.password = password;
         this.address = address;
@@ -75,7 +75,6 @@ public class Client implements Serializable {
         this.phone = phone;
     }
 
-    @Transactional
     public List<Orders> getOrdersList() {
         return ordersList;
     }

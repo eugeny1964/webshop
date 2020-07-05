@@ -60,13 +60,7 @@ public class GoodService {
     }
     @Transactional
     public List<Order_Good> getOrder_goodFromGood(Long id){
-        Good good1 = goodRepository.getAllById(id);
-        List<Order_Good> order_good = good1.getOrder_good();
-        System.out.println(order_good);
-        return order_good;
-    }
-    @Transactional
-    public List<Order_Good> getOrder_goodFromGoodOb(Good good){
+        Good good = goodRepository.getAllById(id);
         List<Order_Good> order_good = good.getOrder_good();
         System.out.println(order_good);
         return order_good;

@@ -7,6 +7,8 @@ import com.evgueny.webshop.service.GoodService;
 import com.evgueny.webshop.service.Order_GoodService;
 
 import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 
 @SpringBootApplication
@@ -35,19 +38,14 @@ public class WebShopApplication implements CommandLineRunner {
     @Autowired
     private ClientService clientService;
 
+
     @Override
     public void run(String... args) throws Exception {
+        //отдельный метод
         List<Order_Good> order_goodFromGood = goodService.getOrder_goodFromGood(2L);
         System.out.println(order_goodFromGood);
-
-        Good good=goodService.getById(2L);
-        List<Order_Good> orderGoods=goodService.getOrder_goodFromGood(2L);
-        System.out.println(orderGoods);
-
-        List<Order_Good> orderGood=goodService.getOrder_goodFromGoodOb(good);
-        System.out.println(orderGood);
-
-
-
+        Client client=new Client("klsfj","kfslaj","nvkds","9070190199","fhj@nf2l");
+        Client client1 = clientService.addClient(client);
+        System.out.println(client1);
     }
 }
