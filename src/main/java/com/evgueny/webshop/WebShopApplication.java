@@ -41,11 +41,12 @@ public class WebShopApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //отдельный метод
-        List<Order_Good> order_goodFromGood = goodService.getOrder_goodFromGood(2L);
+/*        //отдельный метод
+        List<Order_Good> order_goodFromGood = goodService.getOrder_goodFromGood(1L);
         System.out.println(order_goodFromGood);
-        Client client=new Client("klsfj","kfslaj","nvkds","9070190199","fhj@nf2l");
-        Client client1 = clientService.addClient(client);
-        System.out.println(client1);
+        Client client = new Client("klsfj", "kfslaj", "nvkds", "9070190199", "fhj@nf2l");
+        List<Orders> ordersFromClient = clientService.getOrdersFromClient();
+        System.out.println(ordersFromClient);*/
+   /*     goodService.testExeption();*/
     }
 }

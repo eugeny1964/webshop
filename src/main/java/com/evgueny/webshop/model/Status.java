@@ -1,5 +1,7 @@
 package com.evgueny.webshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,16 +12,21 @@ public class Status implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private String type;
-
+    @Enumerated(EnumType.STRING)
+    private StatusType type;
+    @JsonIgnore
     @OneToMany(mappedBy = "status")
     List<Orders> ordersList;
 
     public Status() {
     }
 
-    public Status(String type) {
+    public Status(StatusType type) {
         this.type = type;
+    }
+
+    public Status(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 
     @Override
@@ -38,11 +45,19 @@ public class Status implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public StatusType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(StatusType type) {
         this.type = type;
+    }
+
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 }

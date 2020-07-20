@@ -1,6 +1,9 @@
 package com.evgueny.webshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,54 +13,48 @@ public class Delivery implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private DeliveryType type;
+    @NotNull
     private Double price;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "delivery")
     List<Orders> orderlist;
+
+    public Delivery() {
+    }
+
+    public Delivery(DeliveryType type, Double price) {
+        this.type = type;
+        this.price = price;
+    }
 
     public Delivery(List<Orders> orderlist) {
         this.orderlist = orderlist;
     }
 
-    public Delivery(String type, Double price) {
-        this.type=type;
-        this.price=price;
-    }
-
-    public List<Orders> getOrderlist() {
-        return orderlist;
-    }
-
-    public void setOrderlist(List<Orders> orderlist) {
-        this.orderlist = orderlist;
-    }
-
-    public Delivery() {
-    }
-
     @Override
     public String toString() {
         return "Delivery{" +
-                "id_delivery=" + id +
-                ", type='" + type + '\'' +
+                "id=" + id +
+                ", type=" + type +
                 ", price=" + price +
                 '}';
     }
 
-    public Long getId_delivery() {
+    public Long getId() {
         return id;
     }
 
-    public void setId_delivery(Long id_delivery) {
-        this.id = id_delivery;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getType() {
+    public DeliveryType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(DeliveryType type) {
         this.type = type;
     }
 
@@ -67,5 +64,13 @@ public class Delivery implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Orders> getOrderlist() {
+        return orderlist;
+    }
+
+    public void setOrderlist(List<Orders> orderlist) {
+        this.orderlist = orderlist;
     }
 }

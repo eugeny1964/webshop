@@ -12,8 +12,9 @@ public class Order_GoodService {
     @Autowired
     Order_GoodRepository order_goodRepository;
 
-    @Transactional
-    public Order_Good getOrder_GoodByCount(Long count) {
-        return order_goodRepository.findByCount(count);
+    public Order_Good add(Order_Good order_good){
+        order_goodRepository.save(order_good);
+        return order_good;
     }
+
 }

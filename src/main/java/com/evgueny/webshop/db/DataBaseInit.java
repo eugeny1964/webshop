@@ -28,6 +28,10 @@ public class DataBaseInit {
     private Stock_GoodRepository stock_goodRepository;
     @Autowired
     private Order_GoodRepository order_goodRepository;
+    @Autowired
+    AdministratorRepository administratorRepository;
+    @Autowired
+    OldClientRepository oldClientRepository;
 
     @PostConstruct
     public void init() {
@@ -38,7 +42,7 @@ public class DataBaseInit {
         Client client5 = clientRepository.save(new Client("Мария", "password6", "Волгоградский проспект 8", "+76666666", "6mail@mail.ru"));
         Client client6 = clientRepository.save(new Client("Ольга", "password7", "Вавилова 46", "+77777777", "7mail@mail.ru"));
         Client client7 = clientRepository.save(new Client("Надежда", "password8", "Нагорная 44", "+78888888", "8mail@mail.ru"));
-
+        Administrator administrator=administratorRepository.save(new Administrator("Вася","greqterq","Проспект мира 1","+7890444","nkfldgndf@mail.ru"));
         StockRoom stock1 = stockRoomRepository.save(new StockRoom("msk-003"));
         StockRoom stock2 = stockRoomRepository.save(new StockRoom("msk-004"));
         StockRoom stock3 = stockRoomRepository.save(new StockRoom("msk-005"));
@@ -65,27 +69,34 @@ public class DataBaseInit {
         stock_goodRepository.save(new Stock_Good(3L,8L, 500));
         stock_goodRepository.save(new Stock_Good(2L,10L, 34));
         stock_goodRepository.save(new Stock_Good(2L,7L, 1));
-        Status st1 = statusRepository.save(new Status("Оплачен"));
-        Status st2 = statusRepository.save(new Status("Не оплачен"));
 
-        Delivery del1 = deliveryRepository.save(new Delivery("Клиенту на дом", 1D));
-        Delivery del2 = deliveryRepository.save(new Delivery("Пункт выдачи", 0.5D));
-        Delivery del3 = deliveryRepository.save(new Delivery("Получение на складе", 0D));
+        Delivery delivery=deliveryRepository.save(new Delivery(DeliveryType.HOME,1000D));
+        Delivery delivery1=deliveryRepository.save(new Delivery(DeliveryType.OFFICE,1000D));
+        Delivery delivery2=deliveryRepository.save(new Delivery(DeliveryType.STORAGE,0D));
 
-        Orders orders1 = ordersRepository.save(new Orders(del1, st1, client1));
-        Orders orders2 = ordersRepository.save(new Orders(del2, st2, client2));
-        Orders orders3 = ordersRepository.save(new Orders(del3, st1, client3));
-        Orders orders4 = ordersRepository.save(new Orders(del1, st2, client4));
-        Orders orders5 = ordersRepository.save(new Orders(del2, st1, client5));
-        Orders orders6 = ordersRepository.save(new Orders(del3, st2, client6));
-        Orders orders8= ordersRepository.save(new Orders(del2, st2, client1));
-        Orders orders9 = ordersRepository.save(new Orders(del3, st1, client2));
-        Orders orders10 = ordersRepository.save(new Orders(del1, st2, client3));
-        Orders orders11 = ordersRepository.save(new Orders(del2, st1, client4));
+        Status status=statusRepository.save(new Status(StatusType.PAID));
+        Status status1=statusRepository.save(new Status(StatusType.NOTPADE));
 
-        order_goodRepository.save(new Order_Good(2L,5L,1L));
-        order_goodRepository.save(new Order_Good(2L,7L,1L));
-        order_goodRepository.save(new Order_Good(2L,9L,100L));
-        order_goodRepository.save(new Order_Good(3L,10L,200L));
+        Orders orders=ordersRepository.save(new Orders(delivery,status,client1,"1"));
+        Orders orders1=ordersRepository.save(new Orders(delivery1,status1,client2,"2"));
+        Orders orders2=ordersRepository.save(new Orders(delivery2,status,client3,"3"));
+        Orders orders3=ordersRepository.save(new Orders(delivery,status1,client4,"4"));
+        Orders orders4=ordersRepository.save(new Orders(delivery1,status,client5,"5"));
+        Orders orders5=ordersRepository.save(new Orders(delivery2,status1,client6,"6"));
+
+        order_goodRepository.save(new Order_Good(1L,1L,2L));
+        order_goodRepository.save(new Order_Good(2L,2L,2L));
+        order_goodRepository.save(new Order_Good(3L,3L,1L));
+        order_goodRepository.save(new Order_Good(4L,4L,2L));
+        order_goodRepository.save(new Order_Good(5L,5L,2L));
+
+        oldClientRepository.save(new OldClient("Петя", "password10", "Гиляровского 15", "+72222222", "2mail@mail.ru",5L));
+        oldClientRepository.save(new OldClient("Олег", "password20", "Гиляровского 25", "+722222", "3mail@mail.ru",5L));
+
+
+
+
+        //  DeliveryType deliveryType=new DeliveryType();
+
     }
 }

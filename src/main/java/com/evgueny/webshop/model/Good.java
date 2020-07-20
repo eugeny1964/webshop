@@ -1,6 +1,9 @@
 package com.evgueny.webshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +14,20 @@ public class Good implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+    @NotEmpty
+    @Size(min = 1, max = 100)
     private String name;
+    @NotNull(message = "Цена не может быть пустой")
+    @Positive
+    @Max(value = 100000, message = "Слишком высо")
     private Double price;
 
-    @OneToMany(mappedBy = "good")
+    @OneToMany(mappedBy = "good",cascade =CascadeType.ALL)
+    @JsonIgnore
     private List<Order_Good> order_good;
 
-    @OneToMany(mappedBy = "good")
+    @JsonIgnore
+    @OneToMany(mappedBy = "good", cascade = CascadeType.ALL)
     private List<Stock_Good> stock_goods;
 
     public Good() {
@@ -36,7 +46,7 @@ public class Good implements Serializable {
     public Good(String name, Double price, List<Stock_Good> stock_goods) {
         this.name = name;
         this.price = price;
-        this.stock_goods=stock_goods;
+        this.stock_goods = stock_goods;
     }
 
     @Override

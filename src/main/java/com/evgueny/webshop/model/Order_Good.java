@@ -1,6 +1,11 @@
 package com.evgueny.webshop.model;
+
 import com.evgueny.webshop.db.key.Order_Good_Key;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 
 @Entity
@@ -14,19 +19,22 @@ public class Order_Good implements Serializable {
     private Long good_id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orders_id",referencedColumnName = "id",insertable = false,updatable = false)
+    @JoinColumn(name = "orders_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Orders orders;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "good_id",referencedColumnName = "id",insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "good_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Good good;
+    @NotNull
+    @Positive
     private Long count;
 
-    public Order_Good() { }
+    public Order_Good() {
+    }
 
-    public Order_Good(Long good_id, Long orders_id,Long count) {
+    public Order_Good(Long good_id, Long orders_id, Long count) {
         this.good_id = good_id;
         this.orders_id = orders_id;
-        this.count=count;
+        this.count = count;
     }
 
     public Order_Good(Orders orders, Good good) {

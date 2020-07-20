@@ -1,5 +1,7 @@
 package com.evgueny.webshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -19,47 +21,29 @@ public class Orders implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "orders")
-    private List<Order_Good> order_good;
+    private List<Order_Good> order_goods;
     private String number;
 
     public Orders() {
     }
 
-    public List<Order_Good> getOrder_good() {
-        return order_good;
-    }
-
-    public void setOrder_good(List<Order_Good> order_good) {
-        this.order_good = order_good;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Orders(Delivery delivery, Status status, Client client) {
+    public Orders(Delivery delivery, Status status, Client client, String number) {
         this.delivery = delivery;
         this.status = status;
         this.client = client;
-    }
-
-    public Orders(List<Order_Good> order_goods) {
-        this.order_good = order_goods;
+        this.number = number;
     }
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Orders{" +
                 "id=" + id +
                 ", delivery=" + delivery +
                 ", status=" + status +
                 ", client=" + client +
+                ", number='" + number + '\'' +
                 '}';
     }
 
@@ -96,11 +80,19 @@ public class Orders implements Serializable {
     }
 
     public List<Order_Good> getOrder_goods() {
-        return order_good;
+        return order_goods;
     }
 
     public void setOrder_goods(List<Order_Good> order_good) {
-        this.order_good = order_good;
+        this.order_goods = order_good;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }
 
