@@ -7,10 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("api/good")
+@Validated
 public class GoodController {
 
     @Autowired
@@ -36,7 +41,7 @@ public class GoodController {
     }
 
     @PutMapping
-    public Good update(@Param(value = "id") Long id, @RequestBody Good good) throws ConstraintViolationExeption {
+    public Good update(@Param(value = "id") Long id, @RequestBody @Valid @NotNull Good good) throws ConstraintViolationExeption {
         return goodService.update(id,good);
     }
 

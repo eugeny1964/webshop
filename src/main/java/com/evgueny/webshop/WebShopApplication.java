@@ -2,22 +2,13 @@ package com.evgueny.webshop;
 
 import com.evgueny.webshop.model.*;
 import com.evgueny.webshop.repository.*;
-import com.evgueny.webshop.service.ClientService;
-import com.evgueny.webshop.service.GoodService;
-import com.evgueny.webshop.service.Order_GoodService;
-
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import com.evgueny.webshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.List;
 import javax.persistence.*;
-import javax.transaction.Transactional;
-
 
 @SpringBootApplication
 public class WebShopApplication implements CommandLineRunner {
@@ -37,9 +28,14 @@ public class WebShopApplication implements CommandLineRunner {
     Order_GoodService order_goodService;
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private OrdersService ordersService;
 
 
     @Override
+
     public void run(String... args) throws Exception {
 /*        //отдельный метод
         List<Order_Good> order_goodFromGood = goodService.getOrder_goodFromGood(1L);
@@ -48,5 +44,13 @@ public class WebShopApplication implements CommandLineRunner {
         List<Orders> ordersFromClient = clientService.getOrdersFromClient();
         System.out.println(ordersFromClient);*/
    /*     goodService.testExeption();*/
+
+/*       goodService.getAll();
+       clientService.getOrdersFromClient();
+       goodRepository.findAll();
+       clientService.getClientByLogin("");*/
+/*        User userById = userService.getUserById(1L);
+        List<User> allUser = userService.getAllUser();*/
+        Orders byId = ordersService.getById(1L);
     }
 }

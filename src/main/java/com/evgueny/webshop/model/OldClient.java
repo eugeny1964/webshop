@@ -30,7 +30,6 @@ public class OldClient extends User implements Serializable {
     public String toString() {
         return "OldClient{" +
                 "discount=" + discount +
-                ", ordersList=" + ordersList +
                 '}';
     }
 

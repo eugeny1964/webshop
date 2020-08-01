@@ -1,13 +1,15 @@
 package com.evgueny.webshop.exception;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestControllerAdvice
@@ -19,22 +21,16 @@ public class AdviceController extends ResponseEntityExceptionHandler {
         return e.getMessage();
 
     }
-    @ExceptionHandler(NullPointerException.class)
-    public String resourseNullPointerException(NullPointerException e){
-        return e.getMessage();
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        System.out.println(headers);
+     //    return super.handleMethodArgumentNotValid(ex, headers, status, request);
+        HttpHeaders httpHeaders=new HttpHeaders();
+        httpHeaders.add("jjjjjj","hhkk");
+        ResponseEntity<Object> responseEntity=new ResponseEntity<Object>("Ошибка запроса",httpHeaders,HttpStatus.BAD_REQUEST);
+        return responseEntity;
     }
-
-    @ExceptionHandler(ConstraintViolationExeption.class)
-    public String resourseConstraintViolationExeption(ConstraintViolationExeption e){
-        return e.getMessage();
-    }
-    
-/*@ExceptionHandler(value = {IllegalArgumentException.class,IllegalStateException.class})
-    public ResponseEntity<Object> IllegalExceptionHandler(RuntimeException exception){
-
-}*/
-    
-
 
 
 }

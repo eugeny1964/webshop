@@ -1,5 +1,6 @@
 package com.evgueny.webshop.service;
 
+import com.evgueny.webshop.aspect.annotations.LogTime;
 import com.evgueny.webshop.exception.ConstraintViolationExeption;
 import com.evgueny.webshop.exception.ResourseNotFoundException;
 import com.evgueny.webshop.model.Good;
@@ -43,6 +44,7 @@ public class GoodService {
         return goodRepository.findAllByName(name);
     }
 
+    //@LogTime
     public Good addGood(Good good) {
         return goodRepository.save(good);
     }
