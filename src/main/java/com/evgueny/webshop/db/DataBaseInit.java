@@ -5,6 +5,7 @@ import com.evgueny.webshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -35,6 +36,8 @@ public class DataBaseInit {
     AdministratorRepository administratorRepository;
     @Autowired
     OldClientRepository oldClientRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init() {
@@ -46,8 +49,8 @@ public class DataBaseInit {
         Client client8 = clientRepository.save(new Client("Миша", "password8",ldt1.minusDays(3), "Сухаревская 9", "+78888888", "8mail@mail.ru"));
         Client client5 = clientRepository.save(new Client("Мария", "password6",ldt1.minusDays(4), "Волгоградский проспект 8", "+76666666", "6mail@mail.ru"));
         Client client6 = clientRepository.save(new Client("Ольга", "password7",ldt1.minusDays(7), "Вавилова 46", "+77777777", "7mail@mail.ru"));
-        Client client7 = clientRepository.save(new Client("Надежда", "password8",ldt1.minusDays(9), "Нагорная 44", "+78888888", "8mail@mail.ru"));
-        Administrator administrator=administratorRepository.save(new Administrator("Вася","greqterq",ldt1.minusDays(25),"Проспект мира 1","+7890444","sizovzhenya1964@gmail.com"));
+        Client client7 = clientRepository.save(new Client("client", passwordEncoder.encode("client"),ldt1.minusDays(9), "Нагорная 44", "+78888888", "8mail@mail.ru"));
+        Administrator administrator=administratorRepository.save(new Administrator("admin",passwordEncoder.encode("admin"),ldt1.minusDays(25),"Проспект мира 1","+7890444","sizovzhenya1964@gmail.com"));
 
         StockRoom stock1 = stockRoomRepository.save(new StockRoom("msk-003"));
         StockRoom stock2 = stockRoomRepository.save(new StockRoom("msk-004"));

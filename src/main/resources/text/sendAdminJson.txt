@@ -1,5 +1,0 @@
-{"id":1,"login":"Иван","password":"password2","address":"Гиляровского 10","phone":"+72222222","email":"2mail@mail.ru","dateTime":"2020-08-05 17:14:10"}
-{"id":2,"login":"Владимир","password":"password3","address":"Щепкина 4","phone":"+73333333Э","email":"3mail@mail.ru","dateTime":"2020-08-04 17:14:10"}
-{"id":3,"login":"Артем","password":"password4","address":"Проспект Мира 55","phone":"+74444444","email":"4mail@mail.ru","dateTime":"2020-08-03 17:14:10"}
-{"id":4,"login":"Федор","password":"password5","address":"Сухаревская 3","phone":"+75555555","email":"5mail@mail.ru","dateTime":"2020-08-02 17:14:10"}
-{"id":5,"login":"Миша","password":"password8","address":"Сухаревская 9","phone":"+78888888","email":"8mail@mail.ru","dateTime":"2020-08-02 17:14:10"}

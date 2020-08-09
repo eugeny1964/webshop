@@ -7,7 +7,6 @@ import com.evgueny.webshop.repository.UserRepositiry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -26,7 +25,7 @@ public class ScheduledService {
     @Autowired
     private InputOutputService inputOutputService;
 
-    @Scheduled(cron = "0 0 20 * * SAN")
+   // @Scheduled(cron = "0 0 20 * * SUN")
     public void ScheduledMailToAdmin() throws MessagingException, IOException {
         LocalDateTime dateTime = LocalDateTime.now().minusWeeks(1);
         ArrayList<User> allByDateTimeIsAfter = (ArrayList<User>) userRepositiry.findAllByDateTimeAfter(dateTime);
@@ -37,7 +36,7 @@ public class ScheduledService {
         mailService.send(adminMail.get(0).getEmail(),"sizovzhenya1964@gmail.com","Новые клиенты","",s1);
     }
 
-    @Scheduled(cron = "* * */50 * * *")
+   // @Scheduled(fixedRate = 1000000000)
     public void ScheduledMailToClient() throws MessagingException {
         String s="Всем привет";
         ArrayList<User> userArrayList = (ArrayList<User>) userRepositiry.findAll();

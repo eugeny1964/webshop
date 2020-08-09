@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface UserRepositiry extends CrudRepository<User,Long> {
     List<User> findAllByDateTimeAfter(LocalDateTime localDateTime) ;
+    User findByLogin(String login);
 }

@@ -22,7 +22,6 @@ public abstract class User {
     private Long id;
     @Size(min = 3,max = 15)
     private String login;
-    @Size(min = 3,max = 15)
     private String password;
 
     @NotNull

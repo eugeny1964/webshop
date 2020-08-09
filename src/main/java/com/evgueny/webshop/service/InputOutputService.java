@@ -27,11 +27,8 @@ public class InputOutputService {
         String ss="/home/gg/IdeaProjects/web-shop/src/main/resources/text/sendAdminJson.txt";
         FileWriter fileWriter=new FileWriter("/home/gg/IdeaProjects/web-shop/src/main/resources/text/sendAdminJson.txt");
         ObjectMapper objectMapper=new ObjectMapper();
-        for (int i = 0; i < list.size(); i++) {
-            User user = list.get(i);
-            String s = objectMapper.writeValueAsString(user)+"\n";
-            fileWriter.write(s);
-        }
+        String s = objectMapper.writeValueAsString(list)+"\n";
+        fileWriter.write(s);
         fileWriter.close();
         return ss;
     }
