@@ -22,7 +22,7 @@ public class Orders implements Serializable {
     @JoinColumn(name = "client_id")
     private Client client;
     @JsonIgnore
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "orders",fetch = FetchType.EAGER)
     private List<Order_Good> order_goods;
     private String number;
 

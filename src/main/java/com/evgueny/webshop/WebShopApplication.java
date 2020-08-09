@@ -1,15 +1,16 @@
 package com.evgueny.webshop;
 
-import com.evgueny.webshop.model.*;
 import com.evgueny.webshop.repository.*;
 import com.evgueny.webshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.List;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 import javax.persistence.*;
 
+@EnableScheduling
 @SpringBootApplication
 public class WebShopApplication implements CommandLineRunner {
     public static void main(String[] args) {
@@ -32,6 +33,8 @@ public class WebShopApplication implements CommandLineRunner {
     private UserService userService;
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private MailService emailService;
 
 
     @Override
@@ -49,8 +52,10 @@ public class WebShopApplication implements CommandLineRunner {
        clientService.getOrdersFromClient();
        goodRepository.findAll();
        clientService.getClientByLogin("");*/
-/*        User userById = userService.getUserById(1L);
-        List<User> allUser = userService.getAllUser();*/
-        Orders byId = ordersService.getById(1L);
+/*        User userById = userService.getUserById(1L);*/
+/*        List<User> allUser = userService.getAllUser();*/
+/*        Orders byId = ordersService.getById(1L);*/
+      /*  emailService.send("sizovzhenya1964@gmail.com","sizovzhenya1964@gmail.com","Hello","How are you?");*/
+
     }
 }

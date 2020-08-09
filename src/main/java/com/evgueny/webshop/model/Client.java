@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,11 +25,9 @@ public class Client extends User implements Serializable {
     public Client() {
     }
 
-    public Client(@Size(min = 3, max = 15) String login, @Size(min = 3, max = 15) String password,
-                  @NotNull String address, String phone, @Email String email) {
-        super(login, password, address, phone, email);
+    public Client(@Size(min = 3, max = 15) String login, @Size(min = 3, max = 15) String password, LocalDateTime dateTime, @NotNull String address, String phone, @Email String email) {
+        super(login, password, dateTime, address, phone, email);
     }
-
 
     public List<Orders> getOrdersList() {
         return ordersList;

@@ -11,4 +11,5 @@ import java.util.stream.Stream;
 public interface ClientRepository extends CrudRepository<Client,Long> {
     Client findByLogin(String login);
     Client findByid(Long id);
+
 }

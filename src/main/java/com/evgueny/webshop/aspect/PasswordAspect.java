@@ -11,8 +11,8 @@ import java.util.Collection;
 @Aspect
 public class PasswordAspect {
 
-    @AfterReturning(value = "execution(* com.evgueny.webshop.service.*.*(..)))", returning = "result")
-    public void secure(Object result) {
+    @AfterReturning(value = "execution(* com.evgueny.webshop.service.OrdersService.*(..)))", returning = "result")
+    public void secure(Object result) throws IllegalAccessException {
         if (result instanceof User) {
             User user = (User) result;
             user.setPassword("secured");
@@ -30,19 +30,22 @@ public class PasswordAspect {
         }
         //TODO Извлекаем поля. Если среди них есть user или collec user то вызываем метод.
         if (result instanceof Collection){
-            Collection collection=(Collection)result;
+            Collection collection = (Collection) result;
             for (Object o:collection){
-                Field[] fields = o.getClass().getDeclaredFields();
-                for (Field field:fields){
-                    secure(field);
+                Field[] declaredFields = o.getClass().getDeclaredFields();
+                for (int i = 0; i < collection.size(); i++){
+                    secure(declaredFields[i]);
                 }
             }
-        }
-        Field[] fields = result.getClass().getDeclaredFields();
-        for (int i = 0; i < fields.length; i++) {
-            if (fields[i]!=null){
-                Class<?> type = fields[i].getType();
-                secure(fields[i]);
+        }else {
+            Class<?> cls = result.getClass();
+            Field[] fields = cls.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                if (fields[i] != null) {
+                    fields[i].setAccessible(true);
+                    Object o = fields[i].get(result);
+                    secure(o);
+                }
             }
         }
     }
