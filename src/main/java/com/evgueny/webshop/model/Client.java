@@ -1,5 +1,7 @@
 package com.evgueny.webshop.model;
 
+import com.evgueny.webshop.model.enumType.UserRole;
+import com.evgueny.webshop.model.enumType.UserStatusType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -25,8 +27,14 @@ public class Client extends User implements Serializable {
     public Client() {
     }
 
-    public Client(@Size(min = 3, max = 15) String login, @Size(min = 3, max = 15) String password, LocalDateTime dateTime, @NotNull String address, String phone, @Email String email) {
-        super(login, password, dateTime, address, phone, email);
+    public Client(@Size(min = 3, max = 15) String login, @Size(min = 3, max = 15) String password, LocalDateTime dateTime,
+                  @NotNull String address, String phone, @Email String email, UserStatusType type) {
+        super(login, password, dateTime, address, phone, email, type);
+    }
+
+    @Override
+    public UserRole getRole() {
+        return UserRole.USER;
     }
 
     public List<Orders> getOrdersList() {

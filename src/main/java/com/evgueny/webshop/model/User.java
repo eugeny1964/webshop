@@ -1,13 +1,12 @@
 package com.evgueny.webshop.model;
 
+import com.evgueny.webshop.model.enumType.UserRole;
+import com.evgueny.webshop.model.enumType.UserStatusType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -33,20 +32,22 @@ public abstract class User {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime dateTime;
-
-
-    public User() {
-    }
+    @Enumerated(EnumType.STRING)
+    private UserStatusType type;
 
     public User(@Size(min = 3, max = 15) String login, @Size(min = 3, max = 15)
-            String password,LocalDateTime dateTime, @NotNull String address, String phone, @Email String email) {
+            String password,LocalDateTime dateTime, @NotNull String address, String phone, @Email String email,UserStatusType type) {
         this.login = login;
         this.password = password;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.dateTime=dateTime;
+        this.type=type;
     }
+    public User() { }
+
+    abstract public UserRole getRole();
 
     @Override
     public String toString() {
@@ -58,6 +59,7 @@ public abstract class User {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", dateTime=" + dateTime +
+                ", type=" + type +
                 '}';
     }
 
@@ -115,5 +117,13 @@ public abstract class User {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public UserStatusType getType() {
+        return type;
+    }
+
+    public void setType(UserStatusType type) {
+        this.type = type;
     }
 }

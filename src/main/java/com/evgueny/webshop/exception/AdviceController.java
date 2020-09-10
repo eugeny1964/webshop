@@ -19,7 +19,6 @@ public class AdviceController extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String resourseNotFoundExceptionHandler(ResourseNotFoundException e){
         return e.getMessage();
-
     }
 
     @Override
@@ -31,6 +30,4 @@ public class AdviceController extends ResponseEntityExceptionHandler {
         ResponseEntity<Object> responseEntity=new ResponseEntity<Object>("Ошибка запроса",httpHeaders,HttpStatus.BAD_REQUEST);
         return responseEntity;
     }
-
-
 }

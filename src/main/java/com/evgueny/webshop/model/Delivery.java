@@ -1,5 +1,6 @@
 package com.evgueny.webshop.model;
 
+import com.evgueny.webshop.model.enumType.DeliveryType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

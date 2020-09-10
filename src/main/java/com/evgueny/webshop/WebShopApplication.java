@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.persistence.*;
@@ -35,6 +36,8 @@ public class WebShopApplication implements CommandLineRunner {
     private OrdersService ordersService;
     @Autowired
     private MailService emailService;
+    @Autowired
+    private UserRepositiry userRepositiry;
 
 
     @Override
@@ -56,6 +59,7 @@ public class WebShopApplication implements CommandLineRunner {
 /*        List<User> allUser = userService.getAllUser();*/
 /*        Orders byId = ordersService.getById(1L);*/
       /*  emailService.send("sizovzhenya1964@gmail.com","sizovzhenya1964@gmail.com","Hello","How are you?");*/
+        //userRepositiry.findAll().forEach(System.out::println);
 
     }
 }

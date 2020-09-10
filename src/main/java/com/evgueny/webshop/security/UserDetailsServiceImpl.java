@@ -16,6 +16,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User byLogin = userRepositiry.findByLogin(s);
-        return new UserDetailsImpl(byLogin);
+        if (byLogin==null){
+            throw new UsernameNotFoundException(String.format("Клиент [%s] не найден"));
+        }
+        UserDetailsImpl userDetails=new UserDetailsImpl(byLogin);
+        return userDetails;
     }
 }
